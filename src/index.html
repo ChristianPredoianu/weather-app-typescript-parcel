@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script src="ts/main.ts" defer></script>
+  </head>
+  <body
+    class="bg-no-repeat bg-center bg-cover text-white min-h-screen"
+    style="background-image: url(./assets/images/background.jpg)"
+  >
+    <h1
+      class="
+        text-center text-2xl
+        pt-16
+        sm:text-3xl
+        md:px-20
+        md:pt-40
+        lg:text-5xl
+        lg:pt-10
+      "
+    >
+      Weather Forecast
+    </h1>
+    <div
+      class="
+        input
+        flex flex-col
+        items-center
+        justify-center
+        pt-2
+        md:pt-6
+        lg:pt-10
+      "
+    >
+      <label
+        for="city"
+        class="text-sm mb-4 mt-6 text-center sm:text-base lg:text-2xl"
+        >Search for a city for further details about the weather:</label
+      >
+      <input
+        type="search"
+        placeholder="Search for city.."
+        class="
+          rounded-full
+          p-3
+          px-2
+          w-2/3
+          md:px-32
+          outline-none
+          text-start text-center text-black
+          lg:py-6
+          xl:w-1/3
+        "
+        id="input"
+      />
+    </div>
+    <div class="flex justify-center mt-5 invisible" id="invalidCityAlert">
+      <h1 class="text-xl sm:text-xl lg:text-4xl">
+        Invalid city name. Please try again!
+      </h1>
+    </div>
+    <div class="container-default w-screen" id="container-default">
+      <div
+        class="
+          w-full
+          flex flex-col
+          items-center
+          mb-64
+          mt-10
+          sm:flex-row
+          justify-around
+          md:my-4
+          md:pt-40
+          md:pb-64
+          lg:mt-0
+          lg:pb-0
+          lg:pt-20
+        "
+      >
+        <div
+          class="
+            bg-gray-800 bg-opacity-75
+            border-solid border-2 border-white
+            w-1/2
+            mt-2
+            text-white text-center
+            p-4
+            sm:w-1/4
+            md:p-10
+            md:w-3/12
+            lg:w-1/4
+            lg:p-16
+          "
+        >
+          <p class="text-2xl">London</p>
+          <p id="default-1"></p>
+        </div>
+        <div
+          class="
+            bg-gray-800 bg-opacity-75
+            border-solid border-2 border-white
+            w-1/2
+            mt-2
+            text-white text-center
+            p-4
+            sm:w-1/4
+            md:p-10
+            md:w-3/12
+            lg:w-1/4
+            lg:p-16
+          "
+        >
+          <p class="text-2xl">New York</p>
+          <p id="default-2"></p>
+        </div>
+        <div
+          class="
+            bg-gray-800 bg-opacity-75
+            border-solid border-2 border-white
+            w-1/2
+            mt-2
+            text-white text-center
+            p-4
+            sm:w-1/4
+            md:p-10
+            md:w-3/12
+            lg:w-1/4
+            lg:p-16
+          "
+        >
+          <p class="text-2xl">Tokyo</p>
+          <p id="default-3"></p>
+        </div>
+      </div>
+    </div>
+    <div class="container-app hidden" id="container">
+      <div class="location-date my-12 mx-4">
+        <p class="text-lg" id="location"></p>
+        <p id="date"></p>
+      </div>
+      <div
+        class="
+          weather-info-container
+          mb-10
+          flex
+          md:mt-20
+          md:mb-48
+          lg:mt-10
+          lg:mb-0
+        "
+      >
+        <div
+          class="
+            bg-black bg-opacity-75
+            w-2/6
+            flex flex-col
+            items-center
+            justify-center
+            lg:py-0
+            lg:w-1/4
+          "
+        >
+          <div class="flex flex-col content-center justify-center" id="weather">
+            <i class="fas fa-cloud text-6xl"></i>
+          </div>
+          <div class="flex flex-col content-center justify-center">
+            <div class="text-2xl" id="temp"></div>
+            <div class="text-lg" id="weather-desc"></div>
+          </div>
+        </div>
+        <div
+          class="
+            additional-info-box
+            w-4/6
+            bg-gray-900 bg-opacity-50
+            md:flex
+            justify-around
+            items-center
+            md:py-20
+            md:px-2
+            lg:w-3/4
+          "
+        >
+          <div class="mt-5 mb-5 text-center md:mb-0 border-bottom md:mt-0">
+            <div class="text-xl lg:text-4xl" id="max-temp"></div>
+            <p>Max temp</p>
+          </div>
+          <div class="mb-5 text-center md:mb-0">
+            <div class="text-xl lg:text-4xl" id="min-temp"></div>
+            <p>Min temp</p>
+          </div>
+          <div class="mb-5 text-center md:mb-0">
+            <div class="text-xl lg:text-4xl" id="wind"></div>
+            <p>Wind</p>
+          </div>
+          <div class="mb-5 text-center md:mb-0">
+            <div class="text-xl lg:text-4xl" id="sunrise"></div>
+            <p>Sunrise (User time)</p>
+          </div>
+          <div class="mb-5 text-center md:mb-0">
+            <div class="text-xl lg:text-4xl" id="sunset"></div>
+            <p>Sunset (User time)</p>
+          </div>
+          <div class="mb-5 text-center md:mb-0">
+            <div class="text-xl lg:text-4xl" id="humidity"></div>
+            <p>Humidity</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
