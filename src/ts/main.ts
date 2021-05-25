@@ -1,6 +1,5 @@
 import { OpenWeather } from './openWeather';
 import { UI } from './ui';
-import { WeatherData } from './openWeatherInterface';
 
 const openWeather = new OpenWeather();
 const ui = new UI();
@@ -13,7 +12,7 @@ input.addEventListener('keypress', (e: KeyboardEvent) => {
     if (input.value !== '') {
       ui.defaultContainer.classList.add('hidden');
       ui.container.classList.remove('hidden');
-      openWeather.getData(input.value).then((data: WeatherData) => {
+      openWeather.getData(input.value).then((data) => {
         ui.defaultContainer.classList.add('hidden');
         ui.container.classList.remove('hidden');
         if (data.message === 'city not found') {

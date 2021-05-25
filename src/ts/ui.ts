@@ -60,13 +60,13 @@ export class UI extends OpenWeather {
 
   //Display the default cities temperature
   displayDefaultCities() {
-    this.getData('London').then((data: WeatherData) => {
+    this.getData('London').then((data) => {
       this.populateDefaultCitiesInfo(data, this.london);
     });
-    this.getData('New York').then((data: WeatherData) => {
+    this.getData('New York').then((data) => {
       this.populateDefaultCitiesInfo(data, this.newYork);
     });
-    this.getData('Tokyo').then((data: WeatherData) => {
+    this.getData('Tokyo').then((data) => {
       this.populateDefaultCitiesInfo(data, this.tokyo);
     });
   }
