@@ -276,7 +276,7 @@ function () {
   }
 
   OpenWeather.prototype.getData = function (location) {
-    return __awaiter(this, void 0, void 0, function () {
+    return __awaiter(this, void 0, Promise, function () {
       var response, data;
       return __generator(this, function (_a) {
         switch (_a.label) {
@@ -308,91 +308,49 @@ exports.OpenWeather = OpenWeather;
 },{}],"ts/ui.ts":[function(require,module,exports) {
 "use strict";
 
-var __extends = this && this.__extends || function () {
-  var _extendStatics = function extendStatics(d, b) {
-    _extendStatics = Object.setPrototypeOf || {
-      __proto__: []
-    } instanceof Array && function (d, b) {
-      d.__proto__ = b;
-    } || function (d, b) {
-      for (var p in b) {
-        if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p];
-      }
-    };
-
-    return _extendStatics(d, b);
-  };
-
-  return function (d, b) {
-    if (typeof b !== "function" && b !== null) throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-
-    _extendStatics(d, b);
-
-    function __() {
-      this.constructor = d;
-    }
-
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-  };
-}();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.UI = void 0;
-
-var openWeather_1 = require("./openWeather"); //UI Class
-
+exports.UI = void 0; //UI Class
 
 var UI =
 /** @class */
-function (_super) {
-  __extends(UI, _super);
-
+function () {
   function UI() {
-    var _this = _super.call(this) || this;
-
-    _this.defaultContainer = document.getElementById('container-default');
-    _this.london = document.getElementById('default-1');
-    _this.newYork = document.getElementById('default-2');
-    _this.tokyo = document.getElementById('default-3');
-    _this.location = document.getElementById('location');
-    _this.invalidCityAlert = document.getElementById('invalidCityAlert');
-    _this.container = document.getElementById('container');
-    _this.dateParagraph = document.getElementById('date');
-    _this.temperature = document.getElementById('temp');
-    _this.weatherImage = document.getElementById('weather');
-    _this.weatherDesc = document.getElementById('weather-desc');
-    _this.maxTemp = document.getElementById('max-temp');
-    _this.minTemp = document.getElementById('min-temp');
-    _this.wind = document.getElementById('wind');
-    _this.sunrise = document.getElementById('sunrise');
-    _this.sunset = document.getElementById('sunset');
-    _this.humidity = document.getElementById('humidity');
-    _this.maxTemp = document.getElementById('max-temp');
-    _this.date = new Date();
-    return _this;
-  } //Display the default cities temperature
+    this.defaultContainer = document.getElementById('container-default');
+    this.london = document.getElementById('default-1');
+    this.newYork = document.getElementById('default-2');
+    this.tokyo = document.getElementById('default-3');
+    this.location = document.getElementById('location');
+    this.invalidCityAlert = document.getElementById('invalidCityAlert');
+    this.weatherInfoContainer = document.getElementById('container');
+    this.dateParagraph = document.getElementById('date');
+    this.temperature = document.getElementById('temp');
+    this.weatherImage = document.getElementById('weather');
+    this.weatherDesc = document.getElementById('weather-desc');
+    this.maxTemp = document.getElementById('max-temp');
+    this.minTemp = document.getElementById('min-temp');
+    this.wind = document.getElementById('wind');
+    this.sunrise = document.getElementById('sunrise');
+    this.sunset = document.getElementById('sunset');
+    this.humidity = document.getElementById('humidity');
+    this.maxTemp = document.getElementById('max-temp');
+    this.date = new Date();
+  } //Populate default cities with temp info
 
 
-  UI.prototype.displayDefaultCities = function () {
-    var _this = this;
-
-    this.getData('London').then(function (data) {
-      _this.populateDefaultCitiesInfo(data, _this.london);
-    });
-    this.getData('New York').then(function (data) {
-      _this.populateDefaultCitiesInfo(data, _this.newYork);
-    });
-    this.getData('Tokyo').then(function (data) {
-      _this.populateDefaultCitiesInfo(data, _this.tokyo);
-    });
-  }; //Populate default cities with temp info
-
-
-  UI.prototype.populateDefaultCitiesInfo = function (data, city) {
+  UI.prototype.populateDefaultCitiesTemp = function (data, city) {
     city.innerHTML = Math.floor(data.main.temp) + " &#8451;";
     city.classList.add('lg:text-2xl');
+  };
+
+  UI.prototype.showAlert = function () {
+    var _this = this;
+
+    this.invalidCityAlert.classList.remove('invisible');
+    setTimeout(function () {
+      _this.invalidCityAlert.classList.add('invisible');
+    }, 2000);
   }; //Display weather data to DOM
 
 
@@ -413,17 +371,17 @@ function (_super) {
 
   UI.prototype.checkWeatherDesc = function (weatherDesc) {
     if (weatherDesc === 'Clouds') {
-      this.weatherImage.innerHTML = "<i class=\"fas fa-cloud text-6xl\" id=\"weather\"></i>";
+      this.weatherImage.innerHTML = "<i class=\"fas fa-cloud text-6xl mt-2\" id=\"weather\"></i>";
     } else if (weatherDesc === 'Thunderstorm') {
-      this.weatherImage.innerHTML = "<i class=\"fas fa-bolt text-6xl\"></i>";
+      this.weatherImage.innerHTML = "<i class=\"fas fa-bolt text-6xl mt-2\"></i>";
     } else if (weatherDesc === 'Drizzle' || weatherDesc === 'Rain') {
-      this.weatherImage.innerHTML = "<i class=\"fas fa-umbrella text-6xl\"></i>";
+      this.weatherImage.innerHTML = "<i class=\"fas fa-umbrella text-6xl mt-2\"></i>";
     } else if (weatherDesc === 'Snow') {
-      this.weatherImage.innerHTML = "<i class=\"fas fa-snowflake text-6xl\"></i>";
+      this.weatherImage.innerHTML = "<i class=\"fas fa-snowflake text-6xl mt-2\"></i>";
     } else if (weatherDesc === 'Clear') {
-      this.weatherImage.innerHTML = "<i class=\"far fa-sun text-6xl\"></i>";
+      this.weatherImage.innerHTML = "<i class=\"fas fa-sun text-6xl mt-2\"></i>";
     } else {
-      this.weatherImage.innerHTML = "<i class=\"fas fa-temperature-low text-6xl\"></i>";
+      this.weatherImage.innerHTML = "<i class=\"fas fa-temperature-low text-6xl mt-2\"></i>";
     }
   }; //Format date
 
@@ -476,10 +434,87 @@ function (_super) {
   };
 
   return UI;
-}(openWeather_1.OpenWeather);
+}();
 
 exports.UI = UI;
-},{"./openWeather":"ts/openWeather.ts"}],"ts/main.ts":[function(require,module,exports) {
+},{}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../node_modules/@fortawesome/fontawesome-free/css/solid.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"./..\\webfonts\\fa-solid-900.eot":[["fa-solid-900.0b60ff24.eot","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot"],"./..\\webfonts\\fa-solid-900.woff2":[["fa-solid-900.55d5ef42.woff2","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"],"./..\\webfonts\\fa-solid-900.woff":[["fa-solid-900.f824330b.woff","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"],"./..\\webfonts\\fa-solid-900.ttf":[["fa-solid-900.47a039f3.ttf","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"],"./..\\webfonts\\fa-solid-900.svg":[["fa-solid-900.d08d5f59.svg","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"ts/main.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -490,29 +525,39 @@ var openWeather_1 = require("./openWeather");
 
 var ui_1 = require("./ui");
 
+require("@fortawesome/fontawesome-free/css/solid.css");
+
+require("@fortawesome/fontawesome-free/css/fontawesome.css");
+
 var openWeather = new openWeather_1.OpenWeather();
 var ui = new ui_1.UI();
-ui.displayDefaultCities(); //Input Event Listener
+
+function displayDefaultCitiesTemp() {
+  openWeather.getData('London').then(function (data) {
+    ui.populateDefaultCitiesTemp(data, ui.london);
+  });
+  openWeather.getData('New York').then(function (data) {
+    ui.populateDefaultCitiesTemp(data, ui.newYork);
+  });
+  openWeather.getData('Tokyo').then(function (data) {
+    ui.populateDefaultCitiesTemp(data, ui.tokyo);
+  });
+} //Input Event Listener
+
 
 var input = document.getElementById('input');
 input.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
     if (input.value !== '') {
-      ui.defaultContainer.classList.add('hidden');
-      ui.container.classList.remove('hidden');
       openWeather.getData(input.value).then(function (data) {
-        ui.defaultContainer.classList.add('hidden');
-        ui.container.classList.remove('hidden');
+        console.log(data);
 
         if (data.message === 'city not found') {
-          ui.invalidCityAlert.classList.remove('invisible');
-          setTimeout(function () {
-            ui.invalidCityAlert.classList.add('invisible');
-          }, 2000);
-          ui.container.classList.add('hidden');
-          ui.defaultContainer.classList.remove('hidden');
+          ui.showAlert();
           input.value = '';
         } else {
+          ui.defaultContainer.classList.add('hidden');
+          ui.weatherInfoContainer.classList.remove('hidden');
           ui.displayWeather(data);
           input.value = '';
         }
@@ -520,7 +565,8 @@ input.addEventListener('keypress', function (e) {
     }
   }
 });
-},{"./openWeather":"ts/openWeather.ts","./ui":"ts/ui.ts"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+displayDefaultCitiesTemp();
+},{"./openWeather":"ts/openWeather.ts","./ui":"ts/ui.ts","@fortawesome/fontawesome-free/css/solid.css":"../node_modules/@fortawesome/fontawesome-free/css/solid.css","@fortawesome/fontawesome-free/css/fontawesome.css":"../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -548,7 +594,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54593" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49931" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

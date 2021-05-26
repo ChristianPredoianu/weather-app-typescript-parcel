@@ -1,15 +1,14 @@
-import { OpenWeather } from './openWeather';
-import { WeatherData } from './openWeatherInterface';
+import { WeatherData } from './openWeather';
 
 //UI Class
-export class UI extends OpenWeather {
+export class UI {
   defaultContainer: HTMLDivElement;
   london: HTMLParagraphElement;
   newYork: HTMLParagraphElement;
   tokyo: HTMLParagraphElement;
   location: HTMLParagraphElement;
   invalidCityAlert: HTMLHeadingElement;
-  container: HTMLElement;
+  weatherInfoContainer: HTMLElement;
   dateParagraph: HTMLParagraphElement;
   temperature: HTMLParagraphElement;
   weatherImage: HTMLElement;
@@ -23,7 +22,6 @@ export class UI extends OpenWeather {
   date: Date;
 
   constructor() {
-    super();
     this.defaultContainer = document.getElementById(
       'container-default'
     )! as HTMLDivElement;
@@ -38,7 +36,9 @@ export class UI extends OpenWeather {
     this.invalidCityAlert = document.getElementById(
       'invalidCityAlert'
     )! as HTMLHeadingElement;
-    this.container = document.getElementById('container')! as HTMLElement;
+    this.weatherInfoContainer = document.getElementById(
+      'container'
+    )! as HTMLElement;
     this.dateParagraph = document.getElementById(
       'date'
     )! as HTMLParagraphElement;
@@ -58,23 +58,17 @@ export class UI extends OpenWeather {
     this.date = new Date();
   }
 
-  //Display the default cities temperature
-  displayDefaultCities() {
-    this.getData('London').then((data) => {
-      this.populateDefaultCitiesInfo(data, this.london);
-    });
-    this.getData('New York').then((data) => {
-      this.populateDefaultCitiesInfo(data, this.newYork);
-    });
-    this.getData('Tokyo').then((data) => {
-      this.populateDefaultCitiesInfo(data, this.tokyo);
-    });
-  }
-
   //Populate default cities with temp info
-  populateDefaultCitiesInfo(data: WeatherData, city: HTMLParagraphElement) {
+  populateDefaultCitiesTemp(data: WeatherData, city: HTMLParagraphElement) {
     city.innerHTML = `${Math.floor(data.main.temp)} &#8451;`;
     city.classList.add('lg:text-2xl');
+  }
+
+  showAlert() {
+    this.invalidCityAlert.classList.remove('invisible');
+    setTimeout(() => {
+      this.invalidCityAlert.classList.add('invisible');
+    }, 2000);
   }
 
   //Display weather data to DOM
@@ -96,17 +90,17 @@ export class UI extends OpenWeather {
   //Add different weather icon depending on weatherDesc (data from API)
   checkWeatherDesc(weatherDesc: string) {
     if (weatherDesc === 'Clouds') {
-      this.weatherImage.innerHTML = `<i class="fas fa-cloud text-6xl" id="weather"></i>`;
+      this.weatherImage.innerHTML = `<i class="fas fa-cloud text-6xl mt-2" id="weather"></i>`;
     } else if (weatherDesc === 'Thunderstorm') {
-      this.weatherImage.innerHTML = `<i class="fas fa-bolt text-6xl"></i>`;
+      this.weatherImage.innerHTML = `<i class="fas fa-bolt text-6xl mt-2"></i>`;
     } else if (weatherDesc === 'Drizzle' || weatherDesc === 'Rain') {
-      this.weatherImage.innerHTML = `<i class="fas fa-umbrella text-6xl"></i>`;
+      this.weatherImage.innerHTML = `<i class="fas fa-umbrella text-6xl mt-2"></i>`;
     } else if (weatherDesc === 'Snow') {
-      this.weatherImage.innerHTML = `<i class="fas fa-snowflake text-6xl"></i>`;
+      this.weatherImage.innerHTML = `<i class="fas fa-snowflake text-6xl mt-2"></i>`;
     } else if (weatherDesc === 'Clear') {
-      this.weatherImage.innerHTML = `<i class="far fa-sun text-6xl"></i>`;
+      this.weatherImage.innerHTML = `<i class="fas fa-sun text-6xl mt-2"></i>`;
     } else {
-      this.weatherImage.innerHTML = `<i class="fas fa-temperature-low text-6xl"></i>`;
+      this.weatherImage.innerHTML = `<i class="fas fa-temperature-low text-6xl mt-2"></i>`;
     }
   }
 
