@@ -14,7 +14,7 @@
     <a href="https://github.com/ChristianPredoianu/weather-app-typescript-parcel"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://int-space-station-tracker.netlify.app//">View Demo</a>
+    <a href="https://weatherapptypescript.netlify.app/">View Demo</a>
     ·
     <a href="https://github.com/ChristianPredoianu/weather-app-typescript-parcel/issues">Report Bug</a>
     ·
