@@ -53,13 +53,13 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Track current position and path about the international space station. Show info about velocity and altitude.
+Get info about the weather at a specific location.
 
 ### Built With
 
 * [Html5](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
-* [Css3](https://developer.mozilla.org/en-US/docs/Web/CSS)
-* [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [TailwindCss](https://tailwindcss.com/)
+* [TypeScript](https://www.typescriptlang.org/)
 * [Parcel](https://parceljs.org/)
 
 
@@ -80,13 +80,12 @@ To get a local copy up and running follow these simple steps.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/ChristianPredoianu/int-space-station-tracker.git
+   git clone https://github.com/ChristianPredoianu/weather-app-typescript-parcel.git
    ```
 2. Install NPM packages
    ```sh
    npm install
    ```
-   
 3. Run dev server
    ```sh
    npm run dev
@@ -101,8 +100,7 @@ To get a local copy up and running follow these simple steps.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Keep track of the current position of the international space station on map, see previos position on map, see info about current velocity and altitude.
-Data refreshes every 2 sec due to rate limit from API.
+Use the input to search for the current weather at a specific city. 
 
 
 
@@ -117,15 +115,14 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Christian Predoianu - [@linkedin](https://se.linkedin.com/in/christian-predoianu-369218157) - christianpredoianu@yahoo.com
 
-Project Link: [https://github.com/ChristianPredoianu/int-space-station-tracker](https://github.com/ChristianPredoianu/int-space-station-tracker)
+Project Link: [https://github.com/ChristianPredoianu/weather-app-typescript-parcel](https://github.com/ChristianPredoianu/weather-app-typescript-parcel)
 
 
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* [Where the ISS at API](https://wheretheiss.at/w/developer)
-* [Open Street Map](https://www.openstreetmap.org/)
+* [OpenWeather API](https://openweathermap.org/api)
 * [Font-Awesome](https://fontawesome.com/)
 
 
