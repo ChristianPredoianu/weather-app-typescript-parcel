@@ -2,21 +2,21 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/ChristianPredoianu/int-space-station-tracker">
+  <a href="https://github.com/ChristianPredoianu/weather-app-typescript-parcel">
     <img src="src/assets/images/background.jpg" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Int Space Station Tracker (Open Street Map)</h3>
+  <h3 align="center">Weather app TypeScript</h3>
 
   <p align="center">
-   International space station tracker to keep track off the current position of the space station nad show info about current velocity and altitude. Made with Vanilla js. 
+   A weather app to keep track of info about the weather at a specific location. 
     <br />
-    <a href="https://github.com/ChristianPredoianu/int-space-station-tracker"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/ChristianPredoianu/weather-app-typescript-parcel"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://int-space-station-tracker.netlify.app//">View Demo</a>
     ·
-    <a href="https://github.com/ChristianPredoianu/int-space-station-tracker/issues">Report Bug</a>
+    <a href="https://github.com/ChristianPredoianu/weather-app-typescript-parcel/issues">Report Bug</a>
     ·
    
   </p>
