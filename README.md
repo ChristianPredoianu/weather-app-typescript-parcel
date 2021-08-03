@@ -3,7 +3,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/ChristianPredoianu/weather-app-typescript-parcel">
-    <img src="src/assets/images/background.jpg" alt="Logo" width="80" height="80">
+    <img src="src/assets/images/background.jpg" alt="Logo" width="200" height="180">
   </a>
 
   <h3 align="center">Weather App TypeScript</h3>
